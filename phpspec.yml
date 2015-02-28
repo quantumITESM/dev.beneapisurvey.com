@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: SurveyBene
+        psr4_prefix: SurveyBene
+        src_path: app
