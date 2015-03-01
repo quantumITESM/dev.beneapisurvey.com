@@ -20,7 +20,6 @@ class SurveyController extends Controller {
 		//
 
 		$surveys= Survey::all();
-
 		return response()->json(['message'=>'list of survey',
 			'code'=>200, 'surveys'=>$surveys],200);
 	}

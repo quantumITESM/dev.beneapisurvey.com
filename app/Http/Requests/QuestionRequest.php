@@ -23,8 +23,7 @@ class QuestionRequest extends Request {
 	{
 		return [
 			//
-			'title'=>'required',
-			'idSurvey'=>'required'
+			'title'=>'required'
 		];
 	}
 

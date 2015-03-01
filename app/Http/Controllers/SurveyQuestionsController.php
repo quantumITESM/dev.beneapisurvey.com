@@ -5,6 +5,11 @@ use SurveyBene\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use SurveyBene\Http\Requests\QuestionRequest;
+use SurveyBene\Survey;
+//use SurveyBene\Question;
+
+
 class SurveyQuestionsController extends Controller {
 
 	/**
@@ -12,9 +17,15 @@ class SurveyQuestionsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($surveyId)
 	{
 		//
+		$survey=Survey::find($surveyId);
+		if(!$survey){
+			return response()->json(['message'=>'Survey does not exist'],404);
+		}
+
+		return response()->json(['questions'=>$survey->questions],200);
 	}
 
 	/**
@@ -32,9 +43,25 @@ class SurveyQuestionsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(QuestionRequest $questionRequest, $surveyId)
 	{
 		//
+		$survey=Survey::find($surveyId);
+		$questionsParams=$questionRequest->all();
+
+		if(!$survey){
+			return response()->json(['message'=>'Survey does not exist'],404);
+		}
+
+		$question=$survey->questions()->create($questionsParams);
+
+		return response()->json(['message'=>'Question successfully created',
+			'code'=>201,'question'=>$question],201);
+
+
+
+
+
 	}
 
 	/**

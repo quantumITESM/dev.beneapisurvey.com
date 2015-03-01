@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('berna', function(){
-	return 'Hola Berna';
 
-});
 
 Route::get('/', 'WelcomeController@index');
 
@@ -27,9 +24,10 @@ Route::controllers([
 
 
 Route::group(['prefix'=>'api/v1'], function(){
-	Route::resource('surveys','SurveyController', ['except'=>['create']]);
+
+	Route::resource('surveys','SurveyController',['only'=>['show','store', 'index']]);
 	Route::resource('questions','QuestionController',['only'=>['index','show']]);
-	Route::resource('surveys.questions','SurveyQuestionsController', ['only'=>['create','index']]);
+	Route::resource('surveys.questions','SurveyQuestionsController', ['only'=>['store','index']]);
 
 });
 

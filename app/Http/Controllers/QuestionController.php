@@ -40,19 +40,7 @@ class QuestionController extends Controller {
 	public function store(QuestionRequest $request)
 	{
 		//
-		$surveyID=$request->input('idSurvey');
-		$survey=Survey::find($surveyID);
 
-
-
-		$questionTitle=$request->only(['title']);
-
-		if ($survey){
-			$question=$survey->questions()->create($questionTitle);
-			//$survey->questions()->save($question);
-		}
-
-		return response()->json(['message'=>'Question successfully created','code'=>200,'question'=>$question],200);
 
 	}
 
@@ -65,6 +53,12 @@ class QuestionController extends Controller {
 	public function show($id)
 	{
 		//
+		$question=Question::find($id);
+		if(!$question){
+			return response()->json(['message'=>'question does not exists'],404);
+		}
+
+		return response()->json(['question'=>$question],200);
 	}
 
 	/**
