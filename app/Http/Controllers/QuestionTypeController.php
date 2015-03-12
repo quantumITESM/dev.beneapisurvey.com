@@ -4,11 +4,10 @@ use SurveyBene\Http\Requests;
 use SurveyBene\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use SurveyBene\Http\Requests\QuestionRequest;
-use SurveyBene\Question;
-use SurveyBene\Survey;
 
-class QuestionController extends Controller {
+use SurveyBene\QuestionType;
+
+class QuestionTypeController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -18,8 +17,8 @@ class QuestionController extends Controller {
 	public function index()
 	{
 		//
-		$questions=Question::all();
-		return response()->json(['questions'=>$questions],200);
+		$questionTypes=QuestionType::all();
+		return response()->json(['questions'=>$questionTypes],200);
 	}
 
 	/**
@@ -37,11 +36,9 @@ class QuestionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(QuestionRequest $request)
+	public function store()
 	{
 		//
-
-
 	}
 
 	/**
@@ -53,12 +50,12 @@ class QuestionController extends Controller {
 	public function show($id)
 	{
 		//
-		$question=Question::find($id);
-		if(!$question){
-			return response()->json(['message'=>'question does not exists','code'=>404],404);
+		$questionType=QuestionType::find($id);
+		if(!$questionType){
+			return response()->json(['message'=>'Question type not found', 'code'=>401],401);
 		}
 
-		return response()->json(['question'=>$question],200);
+		return response()->json(['survey'=>$questionType],200);
 	}
 
 	/**

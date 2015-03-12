@@ -12,6 +12,7 @@
 */
 
 
+Route::get('survey', 'SurveyForm@index');
 
 Route::get('/', 'WelcomeController@index');
 
@@ -29,5 +30,6 @@ Route::group(['prefix'=>'api/v1'], function(){
 	Route::resource('questions','QuestionController',['only'=>['index','show']]);
 	Route::resource('surveys.questions','SurveyQuestionsController', ['only'=>['store','index']]);
 
+	Route::resource('questionsType','QuestionTypeController',['only'=>['index', 'show', 'store']]);
 });
 

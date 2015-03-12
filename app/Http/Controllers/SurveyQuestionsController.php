@@ -22,7 +22,7 @@ class SurveyQuestionsController extends Controller {
 		//
 		$survey=Survey::find($surveyId);
 		if(!$survey){
-			return response()->json(['message'=>'Survey does not exist'],404);
+			return response()->json(['message'=>'Survey does not exist','code'=>401],401);
 		}
 
 		return response()->json(['questions'=>$survey->questions],200);
@@ -50,17 +50,13 @@ class SurveyQuestionsController extends Controller {
 		$questionsParams=$questionRequest->all();
 
 		if(!$survey){
-			return response()->json(['message'=>'Survey does not exist'],404);
+			return response()->json(['message'=>'Survey does not exist','code'=>401],401);
 		}
 
 		$question=$survey->questions()->create($questionsParams);
 
 		return response()->json(['message'=>'Question successfully created',
 			'code'=>201,'question'=>$question],201);
-
-
-
-
 
 	}
 

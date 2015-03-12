@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use SurveyBene\Survey;
+use SurveyBene\User;
+
 
 class DatabaseSeeder extends Seeder {
 
@@ -14,11 +16,11 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
+		User::unguard();
 
-		/*Survey::create([
-			'title'=>'Encuesta de salida',
-			'description'=>'Esta encuesta será aplicada a todos los pacientes'
-		]);*/
+
+
+		$this->call('UserSeeder.php');
 
 		$faker = \Faker\Factory::create();
 		foreach(range(1,5) as $index) {
