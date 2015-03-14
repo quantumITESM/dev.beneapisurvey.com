@@ -23,7 +23,9 @@ class QuestionRequest extends Request {
 	{
 		return [
 			//
-			'title'=>'required'
+			'name'=>'required',
+			'description'=>'required',
+			'hasChoices'=>'required'
 		];
 	}
 

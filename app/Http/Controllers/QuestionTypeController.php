@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 use SurveyBene\QuestionType;
 
+use SurveyBene\Http\Requests\QuestionRequest;
+
+
 class QuestionTypeController extends Controller {
 
 	/**
@@ -36,9 +39,20 @@ class QuestionTypeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(QuestionRequest $request)
 	{
 		//
+		$values=$request->all();
+
+		$questionType=QuestionType::create($values);
+
+		if(!$questionType){
+			return response()->json(['message'=>'something was wrong', 'code'=>401],401);
+		}
+
+		return response()->json(['message'=>'Question type created',
+			'code'=>201,
+			'QuestionType'=>$questionType],201);
 	}
 
 	/**
