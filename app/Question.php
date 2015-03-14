@@ -9,7 +9,7 @@ class Question extends Model {
 	//
 	public function survey(){
 
-		return $this->belongsTo('SurveyBene\Survey');
+		return $this->belongsToMany('SurveyBene\Survey')->withTimestamps();
 	}
 
 }

@@ -10,6 +10,6 @@ class Survey extends Model {
 
 	//
 	public function questions(){
-		return $this->hasMany('SurveyBene\Question');
+		return $this->belongsToMany('SurveyBene\Question')->withTimestamps();
 	}
 }

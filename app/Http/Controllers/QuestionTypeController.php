@@ -21,7 +21,7 @@ class QuestionTypeController extends Controller {
 	{
 		//
 		$questionTypes=QuestionType::all();
-		return response()->json(['questions'=>$questionTypes],200);
+		return response()->json(['questionsTypes'=>$questionTypes],200);
 	}
 
 	/**
