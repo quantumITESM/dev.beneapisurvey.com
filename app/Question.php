@@ -12,4 +12,10 @@ class Question extends Model {
 		return $this->belongsToMany('SurveyBene\Survey')->withTimestamps();
 	}
 
+
+	public function questionsTypes(){
+		return $this->belongsTo('SurveyBene\QuestionType');
+	}
+
+
 }
