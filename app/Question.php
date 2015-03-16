@@ -17,5 +17,8 @@ class Question extends Model {
 		return $this->belongsTo('SurveyBene\QuestionType');
 	}
 
+	public function choices(){
+		return $this->hasMany('SurveyBene\Choices');
+	}
 
 }

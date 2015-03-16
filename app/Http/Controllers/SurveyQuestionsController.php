@@ -43,20 +43,9 @@ class SurveyQuestionsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(QuestionRequest $questionRequest, $surveyId)
+	public function store()
 	{
-		//
-		$survey=Survey::find($surveyId);
-		$questionsParams=$questionRequest->all();
 
-		if(!$survey){
-			return response()->json(['message'=>'Survey does not exist','code'=>401],401);
-		}
-
-		$question=$survey->questions()->create($questionsParams);
-
-		return response()->json(['message'=>'Question successfully created',
-			'code'=>201,'question'=>$question],201);
 
 	}
 
