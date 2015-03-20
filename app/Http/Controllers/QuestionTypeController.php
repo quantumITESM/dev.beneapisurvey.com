@@ -92,9 +92,30 @@ class QuestionTypeController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(QuestionTypeRequest $request, $id)
 	{
 		//
+		$qType=QuestionType::find($id);
+		if(!$qType){
+			return response()->json(['message'=>'QuestionType does not exist','code'=>404],404);
+		}
+
+		//get name
+		$name=$request->get('name');
+		//get description
+		$desc=$request->get('description');
+		//get hasChoice
+		$hasChoices=$request->get('hasChoice');
+
+
+		$qType->name=$name;
+		$qType->description=$desc;
+		$qType->hasChoices=$hasChoices;
+		$qType->save();
+
+		return response()->json(['message'=>'QuestionType has been updated','code'=>200],200);
+
+
 	}
 
 	/**

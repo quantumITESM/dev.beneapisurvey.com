@@ -11,6 +11,7 @@
 |
 */
 
+use SurveyBene\Http\Requests\Request;
 
 Route::get('survey', 'SurveyForm@index');
 
@@ -18,10 +19,16 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
+Route::get('mydocs', function(){
+	return view('vendor.l5-swagger.index');
+});
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+
 
 
 Route::group(['prefix'=>'api/v1'], function(){
@@ -32,8 +39,10 @@ Route::group(['prefix'=>'api/v1'], function(){
 
 	Route::resource('questionTypes.questions','QuestionController@store',['only'=>'store']);
 
-	Route::resource('surveys.questions','SurveyQuestionsController', ['only'=>[index']]);
+	Route::resource('questionsType','QuestionTypeController');
 
-	Route::resource('questionsType','QuestionTypeController',['only'=>['index', 'show', 'store']]);
+	Route::resource('surveys.questions','SurveyQuestionsController', ['only'=>'index']);
+
+
 });
 
