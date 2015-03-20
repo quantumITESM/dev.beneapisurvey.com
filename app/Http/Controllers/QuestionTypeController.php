@@ -6,8 +6,9 @@ use SurveyBene\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use SurveyBene\QuestionType;
+use SurveyBene\Http\Requests\QuestionTypeRequest;
 
-use SurveyBene\Http\Requests\QuestionRequest;
+
 
 
 class QuestionTypeController extends Controller {
@@ -39,9 +40,11 @@ class QuestionTypeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(QuestionRequest $request)
+	public function store(QuestionTypeRequest $request)
 	{
 		//
+
+
 		$values=$request->all();
 
 		$questionType=QuestionType::create($values);
@@ -103,6 +106,13 @@ class QuestionTypeController extends Controller {
 	public function destroy($id)
 	{
 		//
+		$qType=QuestionType::find($id);
+		if(!$qType){
+			return response()->json(['message'=>'QuestionType does not exist','code'=>404],404);
+		}
+
+		$qType->delete();
+		return response()->json(['message'=>'QuestionType successful deleted', 'code'=>'204'],204);
 	}
 
 }

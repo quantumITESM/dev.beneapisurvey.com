@@ -144,6 +144,8 @@ return [
 		'SurveyBene\Providers\ConfigServiceProvider',
 		'SurveyBene\Providers\EventServiceProvider',
 		'SurveyBene\Providers\RouteServiceProvider',
+		'Darkaonline\L5Swagger\L5SwaggerServiceProvider'
+
 
 	],
 
