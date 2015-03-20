@@ -16,7 +16,7 @@
 			QuestionType::unguard();
 
 			QuestionType::create(['name'=>'Abierta',
-				'description'=>'El usuario puede escribir su respuesta',
+				'description'=>'El usuario puede escribir su respuesta, ideal para respuestas cortas o valores numéricos',
 				'hasChoices'=>0]);
 
 			QuestionType::create(['name'=>'Si/No',
@@ -24,7 +24,7 @@
 				'hasChoices'=>0]);
 
 			QuestionType::create(['name'=>'Opción multiple',
-				'description'=>'Se presentan al usuario una serie de opciones para que seleccione',
+				'description'=>'Se presentan al usuario una serie de opciones para que seleccione la o las respuestas que considere adecuadas',
 				'hasChoices'=>1]);
 
 		}
