@@ -14,7 +14,7 @@ class AddChoicesQuestionsRelationship extends Migration {
 	{
 		//
 		Schema::table('choices',function(Blueprint $table){
-			$table->integer('question_id')->unsigned()->nullable()->after('id');
+			$table->char('question_id',36)->nullable()->after('id');
 			$table->foreign('question_id')->references('id')->on('questions');
 		} );
 	}

@@ -14,7 +14,8 @@ class CreateQuestionTypesTable extends Migration {
 	{
 		Schema::create('question_types', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->char('id',36);
+			$table->primary('id');
 			$table->string('name');
 			$table->string('description');
 			$table->boolean('hasChoices');

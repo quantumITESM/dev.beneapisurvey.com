@@ -1,8 +1,9 @@
 <?php namespace SurveyBene;
 
 use Illuminate\Database\Eloquent\Model;
+use SurveyBene\UuidModel;
 
-class Survey extends Model {
+class Survey extends UuidModel {
 
 	protected $fillable=['title','description'];
 

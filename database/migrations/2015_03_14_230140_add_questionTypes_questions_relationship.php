@@ -14,7 +14,7 @@ class AddQuestionTypesQuestionsRelationship extends Migration {
 	{
 		//
 		Schema::table('questions',function(Blueprint $table){
-			$table->integer('questionType_id')->unsigned()->nullable()->after('id');
+			$table->char('questionType_id',36)->nullable()->after('id');
 			$table->foreign('questionType_id')->references('id')->on('question_types');
 		});
 	}
