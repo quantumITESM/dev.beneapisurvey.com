@@ -2,7 +2,7 @@
 
 use SurveyBene\Http\Requests\Request;
 
-class QuestionRequest extends Request {
+class SurveyQuestionRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,16 +22,18 @@ class QuestionRequest extends Request {
 	public function rules()
 	{
 		return [
-			//
-			'name'=>'required',
-			'title'=>'required',
-			'hasChoices'=>'required'
+			'surveyId'=>'required',
+			'questionId'=>'required'
 		];
 	}
 
+
+	/**
+	 * @param array $errors
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function response(array $errors)
 	{
 		return response()->json(['error'=>$errors],500);
 	}
-
 }

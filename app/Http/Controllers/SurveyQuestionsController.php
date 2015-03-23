@@ -4,11 +4,9 @@ use SurveyBene\Http\Requests;
 use SurveyBene\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-
-use SurveyBene\Http\Requests\QuestionRequest;
+use SurveyBene\Question;
 use SurveyBene\Survey;
-//use SurveyBene\Question;
-
+use SurveyBene\Http\Requests\SurveyQuestionRequest;
 
 class SurveyQuestionsController extends Controller {
 
@@ -25,7 +23,7 @@ class SurveyQuestionsController extends Controller {
 			return response()->json(['message'=>'Survey does not exist','code'=>401],401);
 		}
 
-		return response()->json(['questions'=>$survey->questions],200);
+		return response()->json(['survey'=>$survey,'questions'=>$survey->questions],200);
 	}
 
 	/**
@@ -43,8 +41,28 @@ class SurveyQuestionsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(SurveyQuestionRequest $request)
 	{
+		$surveyId=$request->get('surveyId');
+		$questionId=$request->get('questionId');
+
+		$survey=Survey::find($surveyId);
+		$question=Question::find($questionId);
+
+		if(!$survey){
+			return response()->json(['message'=>'Survey does not exist','code'=>401],401);
+		}
+
+		if(!$question){
+			return response()->json(['message'=>'Question does not exist','code'=>401],401);
+		}
+
+
+		$survey->questions()->save($question);
+
+		return response()->json(['message'=>'Question added to survey successful','code'=>401],401);
+
+
 
 
 	}

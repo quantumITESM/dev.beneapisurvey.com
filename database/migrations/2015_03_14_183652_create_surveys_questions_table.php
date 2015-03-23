@@ -12,7 +12,7 @@ class CreateSurveysQuestionsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('surveys_questions', function(Blueprint $table)
+		Schema::create('question_survey', function(Blueprint $table)
 		{
 			$table->char('survey_id',36)->nullable(); //Add the column for survey's Id
 			$table->foreign('survey_id')->references('id')->on('surveys')->onDelete('cascade'); //make the relationship with survey

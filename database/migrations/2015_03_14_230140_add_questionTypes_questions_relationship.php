@@ -14,8 +14,8 @@ class AddQuestionTypesQuestionsRelationship extends Migration {
 	{
 		//
 		Schema::table('questions',function(Blueprint $table){
-			$table->char('questionType_id',36)->nullable()->after('id');
-			$table->foreign('questionType_id')->references('id')->on('question_types');
+			$table->char('question_type_id',36)->nullable()->after('id');
+			$table->foreign('question_type_id')->references('id')->on('question_types');
 		});
 	}
 
@@ -27,10 +27,10 @@ class AddQuestionTypesQuestionsRelationship extends Migration {
 	public function down()
 	{
 		//
-		Scheme::table('questions',function(Blueprint $table){
+		/*Scheme::table('questions', function(Blueprint $table){
 			$table->dropForeign('questions_questiontype_id_foreign');
 			$table->dropColumn('questionType_id');
-		});
+		});*/
 	}
 
 }

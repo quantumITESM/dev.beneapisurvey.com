@@ -26,7 +26,7 @@ class QuestionType extends UuidModel {
 	protected $fillable=['name', 'description', 'hasChoices'];
 
 	public function questions(){
-		return $this->hasMany('SurveyBene\Questions');
+		return $this->hasMany('SurveyBene\Question');
 
 	}
 }

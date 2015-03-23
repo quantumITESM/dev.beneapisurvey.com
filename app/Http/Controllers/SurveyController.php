@@ -18,7 +18,6 @@ class SurveyController extends Controller {
 	public function index()
 	{
 		//
-
 		$surveys= Survey::all();
 		return response()->json(['message'=>'list of survey',
 			'code'=>200, 'surveys'=>$surveys],200);
@@ -71,7 +70,7 @@ class SurveyController extends Controller {
 			return response()->json(['message'=>'Survey not found', 'code'=>401],401);
 		}
 
-		return response()->json(['survey'=>$survey],200);
+		return response()->json(['survey'=>$survey,'questions'=>$survey->questions],200);
 	}
 
 	/**
@@ -105,6 +104,10 @@ class SurveyController extends Controller {
 	public function destroy($id)
 	{
 		//
+		$survey=Survey::find($id);
+		$survey->delete();
+		return response()->json(['message'=>'Survey successful deleted', 'code'=>'204'],204);
+
 	}
 
 }

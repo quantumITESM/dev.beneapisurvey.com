@@ -8,6 +8,8 @@ use SurveyBene\Http\Requests\QuestionRequest;
 use SurveyBene\Question;
 use SurveyBene\Survey;
 
+use SurveyBene\QuestionType;
+
 class QuestionController extends Controller {
 
 	/**
@@ -37,9 +39,39 @@ class QuestionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(QuestionRequest $request)
+	/*public function store(QuestionRequest $request)
 	{
+		$questionValues=$request->all();
+		$newQuestion=new Question($questionValues);
+
+		if(!$newQuestion){
+			return response()->json(['message'=>'Something was wrong!','code'=>505],505);
+
+		}
+
 		//
+		return response()->json(['message'=>'question successful created','code'=>201, 'question' => $newQuestion],201);
+
+
+	}*/
+
+
+	public function store(QuestionRequest $request, $questionTypeID)
+	{
+		$questionType=QuestionType::find($questionTypeID);
+		if(!$questionType)
+		{
+			return response()->json(['message'=>'QuestionType not found', 'code'=>404],404);
+		}
+
+		$qValues=$request->all();
+
+		//$newQuestion=Question::create($qValues);
+
+		$newQuestion=$questionType->questions()->create($qValues);
+
+		return response()->json(['message'=>'Question successful created','code'=>201, 'question'=>$newQuestion],201);
+
 
 
 	}
@@ -92,6 +124,9 @@ class QuestionController extends Controller {
 	public function destroy($id)
 	{
 		//
+		$question=Question::find($id);
+		$question->delete();
+		return response()->json(['message'=>'Question successful deleted', 'code'=>'204'],204);
 	}
 
 }

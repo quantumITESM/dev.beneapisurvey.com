@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use SurveyBene\QuestionType;
 use SurveyBene\Http\Requests\QuestionTypeRequest;
 
-
+use SurveyBene\Http\Requests\QuestionRequest;
 
 
 class QuestionTypeController extends Controller {
@@ -57,6 +57,9 @@ class QuestionTypeController extends Controller {
 			'code'=>201,
 			'QuestionType'=>$questionType],201);
 	}
+
+
+
 
 	/**
 	 * Display the specified resource.

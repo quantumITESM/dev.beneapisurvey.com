@@ -33,15 +33,15 @@ Route::controllers([
 
 Route::group(['prefix'=>'api/v1'], function(){
 
-	Route::resource('surveys','SurveyController',['only'=>['show','store', 'index']]);
+	Route::resource('surveys','SurveyController',['only'=>['show','store','destroy', 'index']]);
 
-	Route::resource('questions','QuestionController',['only'=>['index','show']]);
+	Route::resource('questions','QuestionController',['only'=>['index','show','destroy']]);
 
-	Route::resource('questionTypes.questions','QuestionController@store',['only'=>'store']);
+	Route::resource('questionsType.questions','QuestionController',['only'=>'store']);
 
 	Route::resource('questionsType','QuestionTypeController');
 
-	Route::resource('surveys.questions','SurveyQuestionsController', ['only'=>'index']);
+	Route::resource('questionJoinSurvey','SurveyQuestionsController',['only'=>'store']);
 
 
 });

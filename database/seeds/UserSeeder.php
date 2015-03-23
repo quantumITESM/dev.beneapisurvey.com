@@ -28,7 +28,7 @@ class UserSeeder extends Seeder {
 		foreach(range(1,4) as $index) {
 			User::create([
 				'name'=>$faker->name,
-				'password'=>bcrypt($faker->sentence(10)),
+				'password'=>bcrypt('qwerty123'),
 				'email'=>$faker->email
 			]);
 		}

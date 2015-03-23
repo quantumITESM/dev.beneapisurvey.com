@@ -6,6 +6,7 @@ use SurveyBene\UuidModel;
 class Question extends UuidModel {
 
 	protected $fillable=['title'];
+	protected $hidden = ['created_at','updated_at'];
 	//
 	public function survey(){
 
