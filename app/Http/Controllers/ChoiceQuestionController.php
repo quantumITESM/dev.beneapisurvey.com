@@ -4,11 +4,10 @@ use SurveyBene\Http\Requests;
 use SurveyBene\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use SurveyBene\Survey;
-use SurveyBene\Http\Requests\SurveyRequest;
+use SurveyBene\Choice;
+use SurveyBene\Http\Requests\ChoiceRequest;
 
-
-class SurveyController extends Controller {
+class ChoiceQuestionController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -18,9 +17,6 @@ class SurveyController extends Controller {
 	public function index()
 	{
 		//
-		$surveys= Survey::all();
-		return response()->json(['message'=>'list of survey',
-			'code'=>200, 'surveys'=>$surveys],200);
 	}
 
 	/**
@@ -38,22 +34,10 @@ class SurveyController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(SurveyRequest $request)
+	public function store(ChoiceRequest $request, $questionID)
 	{
 		//
-		$values=$request->only(['title','description']);
-
-		$survey=Survey::create($values);
-
-		if(!$survey){
-			return response()->json(['message'=>'something was wrong :( :( '],401);
-		}
-
-		return response()->json(['message'=>'Survey created',
-			'code'=>200,
-			'survey'=>$survey],200);
-
-
+		return response()->json(['message'=>'Guardar las opciones para la pregunta'],200);
 	}
 
 	/**
@@ -65,12 +49,6 @@ class SurveyController extends Controller {
 	public function show($id)
 	{
 		//
-		$survey=Survey::find($id);
-		if(!$survey){
-			return response()->json(['message'=>'Survey not found', 'code'=>401],401);
-		}
-
-		return response()->json(['survey'=>$survey],200);
 	}
 
 	/**
@@ -104,10 +82,6 @@ class SurveyController extends Controller {
 	public function destroy($id)
 	{
 		//
-		$survey=Survey::find($id);
-		$survey->delete();
-		return response()->json(['message'=>'Survey successful deleted', 'code'=>'204'],204);
-
 	}
 
 }

@@ -7,7 +7,7 @@ class Survey extends UuidModel {
 
 	protected $fillable=['title','description'];
 
-	protected $hidden=['created_at','updated_at'];
+	protected $hidden=['created_at','updated_at','questions'];
 
 
 

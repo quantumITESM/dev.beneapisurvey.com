@@ -58,6 +58,12 @@ class SurveyQuestionsController extends Controller {
 		}
 
 
+		//review if the relation already exists
+		if($survey->questions->contains($question)){
+			return response()->json(['message'=>'Question could not be assigned. Duplicate entry!','code'=>404],404);
+		}
+
+
 		$survey->questions()->save($question);
 
 		return response()->json(['message'=>'Question added to survey successful','code'=>401],401);
