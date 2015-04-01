@@ -144,7 +144,9 @@ return [
 		'SurveyBene\Providers\ConfigServiceProvider',
 		'SurveyBene\Providers\EventServiceProvider',
 		'SurveyBene\Providers\RouteServiceProvider',
-		'Darkaonline\L5Swagger\L5SwaggerServiceProvider'
+		'Darkaonline\L5Swagger\L5SwaggerServiceProvider',
+		'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
+		'Barryvdh\Cors\CorsServiceProvider'
 
 
 	],
@@ -194,6 +196,7 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+		'JWTAuth'   => 'Tymon\JWTAuth\Facades\JWTAuth'
 
 	],
 

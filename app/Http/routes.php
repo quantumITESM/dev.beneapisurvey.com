@@ -17,17 +17,18 @@ Route::get('survey', 'SurveyForm@index');
 
 Route::get('/', 'WelcomeController@index');
 
+
 Route::get('home', 'HomeController@index');
 
 Route::get('mydocs', function(){
 	return view('vendor.l5-swagger.index');
 });
 
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-
 
 Route::group(['prefix'=>'api/v1'], function()
 {
@@ -44,6 +45,10 @@ Route::group(['prefix'=>'api/v1'], function()
 	Route::resource('questionJoinSurvey','SurveyQuestionsController',['only'=>'store']);
 
 	Route::resource('questions.choice', 'ChoiceQuestionController');
+
+	Route::post('authenticate', 'AuthenticateController@authenticate');
+
+	Route::post('signUp', 'AuthenticateController@signUp');
 
 });
 

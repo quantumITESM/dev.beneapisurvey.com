@@ -6,6 +6,9 @@ use SurveyBene\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use SurveyBene\Choice;
 use SurveyBene\Http\Requests\ChoiceRequest;
+use SurveyBene\Question;
+
+
 
 class ChoiceQuestionController extends Controller {
 
@@ -14,9 +17,15 @@ class ChoiceQuestionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($questionID)
 	{
 		//
+		$question=Question::find($questionID);
+		if(!$question){
+			return response()->json(['message'=>'Question not found','code'=>404],404);
+		}
+
+		return response()->json(['questions'=>$question->choices],200);
 	}
 
 	/**
@@ -36,8 +45,24 @@ class ChoiceQuestionController extends Controller {
 	 */
 	public function store(ChoiceRequest $request, $questionID)
 	{
-		//
-		return response()->json(['message'=>'Guardar las opciones para la pregunta'],200);
+		$question=Question::find($questionID);
+		if(!$question){
+			return response()->json(['message'=>'Question not found','code'=>404],404);
+		}
+
+		$values=$request->all();
+		$choice= $question->choices()->create($values);
+		if(!$choice){
+			return response()->json(['message'=>'Ops something was wrong','code'=>401],401);
+
+		}else{
+			return response()->json(['message'=>'Choice added to question successful','choice'=>$choice,'code'=>201],201);
+
+		}
+
+
+
+
 	}
 
 	/**

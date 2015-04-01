@@ -21,7 +21,15 @@ class QuestionController extends Controller {
 	{
 		//
 		$questions=Question::all();
-		return response()->json(['questions'=>$questions],200);
+
+		foreach($questions as $question){
+			echo  $question->toJson();
+			echo  $question->choices->toJson();
+
+		}
+
+
+		//return response()->json(['questions'=>$questions],200);
 	}
 
 	/**

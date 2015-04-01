@@ -24,6 +24,8 @@ class UserSeeder extends Seeder {
 		User::unguard();
 
 
+		User::create(['name'=>'Bernardino', 'password'=>'123123','email'=>'bernardino.guerrero@gmail.com']);
+
 		$faker = \Faker\Factory::create();
 		foreach(range(1,4) as $index) {
 			User::create([

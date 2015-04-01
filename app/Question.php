@@ -20,7 +20,7 @@ class Question extends UuidModel {
 	}
 
 	public function choices(){
-		return $this->hasMany('SurveyBene\Choices');
+		return $this->hasMany('SurveyBene\Choice');
 	}
 
 }
