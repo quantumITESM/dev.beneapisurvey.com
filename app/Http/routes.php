@@ -50,5 +50,7 @@ Route::group(['prefix'=>'api/v1'], function()
 
 	Route::post('signUp', 'AuthenticateController@signUp');
 
+	Route::post('signIn', 'AuthenticateController@signIn');
+
 });
 
