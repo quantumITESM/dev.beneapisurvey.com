@@ -1,7 +1,7 @@
 <?php namespace SurveyBene\Http\Controllers;
 
 use SurveyBene\Http\Requests;
-use SurveyBene\Http\Controllers\Controller;
+//use SurveyBene\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
@@ -12,12 +12,12 @@ use Illuminate\Support\Facades\DB;
 use HttpResponse;
 
 use Symfony\Component\HttpFoundation\Response;
-
+use SurveyBene\Http\Requests\UserRequest;
 
 
 class AuthenticateController extends Controller {
 
-	public function signUp(Request $request)
+	public function signUp(UserRequest $request)
 	{
 		$credentials = $request->only('email', 'password');
 
@@ -41,7 +41,7 @@ class AuthenticateController extends Controller {
 
 	}
 
-	public function signIn(Request $request)
+	public function signIn(UserRequest $request)
 	{
 		$credentials = $request->only('email', 'password');
 		try

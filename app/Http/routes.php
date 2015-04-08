@@ -32,7 +32,7 @@ Route::controllers([
 
 Route::group(['prefix'=>'api/v1'], function()
 {
-	Route::resource('surveys','SurveyController',['only'=>['show','store','destroy', 'index']]);
+	Route::resource('surveys','SurveyController', ['only'=>['show','store','destroy', 'index']]);
 
 	Route::resource('questions','QuestionController',['only'=>['index','show','destroy']]);
 

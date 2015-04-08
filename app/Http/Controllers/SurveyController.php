@@ -10,6 +10,12 @@ use SurveyBene\Http\Requests\SurveyRequest;
 
 class SurveyController extends Controller {
 
+
+	public function __construct()
+	{
+		$this->middleware('jwt.auth');
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
